@@ -29,80 +29,80 @@ assert.throws(function() {
 
 assert.strictEqual(T.parse(
   T.serialize({
-    optionalInt32: '3'
+    optional_int32: '3'
   })
-).optionalInt32, 3, 'Number conversion');
+).optional_int32, 3, 'Number conversion');
 
 assert.strictEqual(T.parse(
   T.serialize({
-    optionalInt32: ''
+    optional_int32: ''
   })
-).optionalInt32, 0, 'Number conversion');
+).optional_int32, 0, 'Number conversion');
 
 assert.strictEqual(T.parse(
   T.serialize({
-    optionalInt32: 'foo'
+    optional_int32: 'foo'
   })
-).optionalInt32, 0, 'Number conversion');
+).optional_int32, 0, 'Number conversion');
 
 assert.strictEqual(T.parse(
   T.serialize({
-    optionalInt32: {}
+    optional_int32: {}
   })
-).optionalInt32, 0, 'Number conversion');
+).optional_int32, 0, 'Number conversion');
 
 assert.strictEqual(T.parse(
   T.serialize({
-    optionalInt32: null
+    optional_int32: null
   })
-).optionalInt32, undefined, 'null');
+).optional_int32, undefined, 'null');
 
 assert.throws(function() {
   T.serialize({
-    optionalNestedEnum: 'foo'
+    optional_nested_enum: 'foo'
   });
 }, Error, 'Unknown enum');
 
 assert.throws(function() {
   T.serialize({
-    optionalNestedMessage: 3
+    optional_nested_message: 3
   });
 }, Error, 'Not an object');
 
 assert.throws(function() {
   T.serialize({
-    repeatedNestedMessage: ''
+    repeated_nested_message: ''
   });
 }, Error, 'Not an array');
 
 assert.bufferEqual(T.parse(
   T.serialize({
-   optionalBytes: new Buffer('foo')
+   optional_bytes: new Buffer('foo')
   })
-).optionalBytes, new Buffer('foo'));
+).optional_bytes, new Buffer('foo'));
 
 assert.bufferEqual(T.parse(
   T.serialize({
-   optionalBytes: 'foo'
+   optional_bytes: 'foo'
   })
-).optionalBytes, new Buffer('foo'));
+).optional_bytes, new Buffer('foo'));
 
 assert.bufferEqual(T.parse(
   T.serialize({
-   optionalBytes: '\u20ac'
+   optional_bytes: '\u20ac'
   })
-).optionalBytes, new Buffer('\u00e2\u0082\u00ac', 'binary'));
+).optional_bytes, new Buffer('\u00e2\u0082\u00ac', 'binary'));
 
 assert.bufferEqual(T.parse(
   T.serialize({
-   optionalBytes: '\u0000'
+   optional_bytes: '\u0000'
   })
-).optionalBytes, new Buffer('\u0000', 'binary'));
+).optional_bytes, new Buffer('\u0000', 'binary'));
 
 assert.equal(T.parse(
   T.serialize({
-   optionalString: new Buffer('f\u0000o')
+   optional_string: new Buffer('f\u0000o')
   })
-).optionalString, 'f\u0000o');
+).optional_string, 'f\u0000o');
 
 puts('Success');
